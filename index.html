@@ -94,8 +94,8 @@
                 <li><code>visiblePages</code> maximum visible pages (default: <code>5</code>)</li>
                 <li><code>initiateStartPageClick</code> fire onclick event at start page on plugin initialization (default <code>true</code>)</li>
                 <li><code>href</code> template for pagination links (default <code>false</code>)</li>
-                <li><code>hrefVariable</code> variable name in href template for page number (default
-                    <code>{{number}}</code>)
+                <li><code>pageVariable</code> variable name in href template for page number (default
+                    <code>{{page}}</code>)
                 </li>
                 <li><code>first</code> text label (default: <code class="highlight"><span
                         class="s">'First'</span></code>)
@@ -108,10 +108,19 @@
                 <li><code>last</code> text label (default: <code class="highlight"><span class="s">'Last'</span></code>)
                 </li>
                 <li><code>loop</code> carousel-style pagination (default: <code class="highlight">false</code>)</li>
+            </ul>
+            <ul>
+                You can use following options to override the CSS classes and to apply your own style.
                 <li><code>paginationClass</code> the root style for pagination component (default: <code
-                        class="highlight"><span class="s">'pagination'</span></code>).
-                    You can use this option to apply your own style
+                        class="highlight"><span class="s">'pagination'</span></code>)
                 </li>
+                <li><code>nextClass</code> css class for 'Next' button (default: <code class="highlight"><span class="s">'next'</span></code>)
+                <li><code>prevClass</code> css class for 'Previous' button (default: <code class="highlight"><span class="s">'prev'</span></code>)
+                <li><code>lastClass</code> css class for 'Last' button (default: <code class="highlight"><span class="s">'last'</span></code>)
+                <li><code>firstClass</code> css class for 'First' button (default: <code class="highlight"><span class="s">'first'</span></code>)
+                <li><code>pageClass</code> css class for page numbers (default: <code class="highlight"><span class="s">'page'</span></code>)
+                <li><code>activeClass</code> css class for active page (default: <code class="highlight"><span class="s">'active'</span></code>)
+                <li><code>disabledClass</code> css class for disabled buttons (default: <code class="highlight"><span class="s">'diabled'</span></code>)
             </ul>
             <ul>Available event:
                 <li><code>onPageClick</code> callback function
@@ -132,8 +141,8 @@
             <p>You can specify url using <code>href</code> option:</p>
             <pre><code class="highlight">    $(selector).twbsPagination({
         totalPages: <span class="il">35</span>,
-        visiblePages: <span class="il">8</span>,
-        href: <span class="s">'?page={{number}}'</span>
+        visiblePages: <span class="il">8</span>
+        href: <span class="s">'?page={{page}}'</span>
     });</code></pre>
 
             <h4>Visible pages option</h4>
@@ -142,7 +151,7 @@
                 shows the 10 visible pages:</p>
             <pre><code class="highlight">    $(selector).twbsPagination({
         totalPages: <span class="il">35</span>,
-        visiblePages: <span class="il">10</span>,
+        visiblePages: <span class="il">10</span>
     });</code></pre>
 
             <p>Note: this is normal size (without <code>pagination-sm</code>)</p>
@@ -162,14 +171,11 @@
                 <ul class="sync-pagination pagination-sm"></ul>
             </div>
 
-            <h4>Using <code>href</code> and <code>hrefVariable</code> options / Example 1</h4>
+            <h4>Using <code>href</code> and <code>pageVariable</code> options / Example 1</h4>
 
             <p>Warning! <br />
-                Page has been reload
+                Page will be reload on using href option.
             </p>
-
-            <p>We do develop not always SAP (single page app). In that case you should have use this
-                <code>options</code></p>
 
             <div id="not-spa-demo-content" class="well">Page 1</div>
             <div class="text-center">
@@ -180,14 +186,14 @@
             <pre><code class="highlight">   $(selector).twbsPagination({
         totalPages: <span class="il">15</span>,
         visiblePages: <span class="il">5</span> ,
-        href: <span class="s">'?a=&page={{number}}&c=d'</span> ,
+        href: <span class="s">'?a=&page={{page}}&c=d'</span> ,
         onPageClick: function (event, page) {
             $(<span class="s">'#not-spa-demo-content'</span>).text('Page ' + page);
         }
     });
             </code></pre>
 
-            <h4>Using <code>href</code> and <code>hrefVariable</code> options / Example 2</h4>
+            <h4>Using <code>href</code> and <code>pageVariable</code> options / Example 2</h4>
 
             <div id="not-spa-demo-content-2" class="well">Page 1</div>
             <div class="text-center">
@@ -199,7 +205,7 @@
         totalPages: <span class="il">15</span>,
         visiblePages: <span class="il">5</span>,
         href: <span class="s">'#page={{pageNumber}}&c=d'</span>,
-        hrefVariable: <span class="s">'{{pageNumber}}'</span>,
+        pageVariable: <span class="s">'{{pageNumber}}'</span>,
         onPageClick: function (event, page) {
             ...
         }
